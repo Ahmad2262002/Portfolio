@@ -21,6 +21,7 @@
 
     nav {
       background: rgba(0, 0, 0, 0.8);
+      -webkit-backdrop-filter: blur(10px);
       backdrop-filter: blur(10px);
     }
 
@@ -325,8 +326,9 @@
   <nav class="navbar navbar-expand-lg navbar-dark fixed-top">
     <div class="container">
       <a class="navbar-brand fw-bold" href="#">Ahmad Alkadri</a>
-      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" title="Toggle navigation" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
+        <span class="visually-hidden">Toggle navigation</span>
       </button>
       <div class="collapse navbar-collapse" id="navbarNav">
         <ul class="navbar-nav ms-auto">
@@ -638,9 +640,9 @@
 
         <div class="id-card-footer">
           <div class="social-links">
-            <a href="mailto:ahmadalkadri2002@gmail.com"><i class="fas fa-envelope"></i></a>
-            <a href="https://www.linkedin.com/in/ahmad-alkadri-42770927a" target="_blank"><i class="fab fa-linkedin"></i></a>
-            <a href="https://github.com/Ahmad2262002" target="_blank"><i class="fab fa-github"></i></a>
+            <a href="mailto:ahmadalkadri2002@gmail.com" title="Send Email"><i class="fas fa-envelope"></i></a>
+            <a href="https://www.linkedin.com/in/ahmad-alkadri-42770927a" target="_blank" rel="noopener" title="LinkedIn Profile"><i class="fab fa-linkedin"></i></a>
+            <a href="https://github.com/Ahmad2262002" target="_blank" rel="noopener" title="GitHub Profile"><i class="fab fa-github"></i></a>
           </div>
 
           <div class="signature">
