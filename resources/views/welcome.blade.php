@@ -1,0 +1,689 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Ahmad Alkadri | Portfolio</title>
+  <!-- Bootstrap 5 -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+  <!-- FontAwesome -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+  <!-- AOS (Animate On Scroll) -->
+  <link rel="stylesheet" href="https://unpkg.com/aos@2.3.1/dist/aos.css">
+  <style>
+    body {
+      font-family: "Segoe UI", sans-serif;
+      background-color: #111;
+      color: #eee;
+      scroll-behavior: smooth;
+    }
+
+    nav {
+      background: rgba(0, 0, 0, 0.8);
+      backdrop-filter: blur(10px);
+    }
+
+    .hero {
+      height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      background: linear-gradient(to right, #000, #222);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .hero::before {
+      content: '';
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      background: radial-gradient(circle at 50% 50%, rgba(200, 150, 0, 0.1) 0%, transparent 50%);
+    }
+
+    .hero h1 {
+      font-size: 3.5rem;
+      font-weight: bold;
+    }
+
+    .card {
+      background-color: #1a1a1a;
+      border: none;
+      transition: transform 0.3s;
+      height: 100%;
+    }
+
+    .card:hover {
+      transform: translateY(-10px);
+      box-shadow: 0 0 20px rgba(255, 200, 0, 0.2);
+    }
+
+    .section-title {
+      position: relative;
+      display: inline-block;
+      margin-bottom: 2rem;
+    }
+
+    .section-title::after {
+      content: '';
+      position: absolute;
+      bottom: -10px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 50px;
+      height: 3px;
+      background-color: #ffc107;
+    }
+
+    .skill-item {
+      background: #1a1a1a;
+      border-radius: 8px;
+      padding: 20px;
+      text-align: center;
+      transition: all 0.3s ease;
+    }
+
+    .skill-item:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 5px 15px rgba(255, 200, 0, 0.1);
+    }
+
+    .skill-icon {
+      font-size: 2.5rem;
+      margin-bottom: 15px;
+      color: #ffc107;
+    }
+
+    footer {
+      background: #000;
+      padding: 20px 0;
+      text-align: center;
+      color: #aaa;
+    }
+
+    .progress {
+      height: 8px;
+      background-color: #333;
+      margin-top: 5px;
+    }
+
+    .progress-bar {
+      background-color: #ffc107;
+    }
+
+    .timeline {
+      position: relative;
+      padding-left: 3rem;
+    }
+
+    .timeline::before {
+      content: '';
+      position: absolute;
+      left: 15px;
+      top: 0;
+      height: 100%;
+      width: 2px;
+      background: #ffc107;
+    }
+
+    .timeline-item {
+      position: relative;
+      margin-bottom: 2rem;
+    }
+
+    .timeline-item::before {
+      content: '';
+      position: absolute;
+      left: -3rem;
+      top: 5px;
+      width: 20px;
+      height: 20px;
+      border-radius: 50%;
+      background: #ffc107;
+    }
+
+    @media (max-width: 768px) {
+      .hero h1 {
+        font-size: 2.5rem;
+      }
+    }
+
+    /* Custom icon for Postman */
+    .fa-postman {
+      display: inline-block;
+      width: 40px;
+      height: 40px;
+      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 256 256'%3E%3Cpath fill='%23FF6C37' d='M200 32H56a24 24 0 0 0-24 24v144a24 24 0 0 0 24 24h144a24 24 0 0 0 24-24V56a24 24 0 0 0-24-24Zm-80 96a16 16 0 1 1 16-16a16 16 0 0 1-16 16Z'/%3E%3Cpath fill='%23FFFFFF' d='M136 112a16 16 0 1 1-16-16a16 16 0 0 1 16 16Z'/%3E%3C/svg%3E");
+      background-size: contain;
+      background-repeat: no-repeat;
+    }
+
+    /* ID Card Styles */
+    .id-card-container {
+      display: flex;
+      justify-content: center;
+      margin: 30px 0;
+    }
+
+    .id-card {
+      width: 320px;
+      background: linear-gradient(135deg, #1a1a1a 0%, #2a2a2a 100%);
+      border-radius: 15px;
+      overflow: hidden;
+      box-shadow: 0 10px 25px rgba(255, 200, 0, 0.15);
+      border: 1px solid #444;
+      color: #eee;
+      position: relative;
+    }
+
+    .id-card-header {
+      background: rgba(255, 193, 7, 0.15);
+      padding: 15px;
+      text-align: center;
+      border-bottom: 2px solid #ffc107;
+    }
+
+    .id-card-header h3 {
+      margin: 0;
+      font-size: 20px;
+      font-weight: 700;
+      letter-spacing: 1px;
+      color: #ffc107;
+    }
+
+    .id-card-header p {
+      margin: 5px 0 0;
+      font-size: 14px;
+      opacity: 0.9;
+    }
+
+    .id-card-body {
+      padding: 20px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+
+    .photo-container {
+      width: 100px;
+      height: 100px;
+      border-radius: 50%;
+      border: 3px solid #ffc107;
+      overflow: hidden;
+      margin-bottom: 20px;
+      box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+      background-color: #2a2a2a;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      color: #777;
+      font-size: 12px;
+      text-align: center;
+    }
+
+    .photo-placeholder {
+      padding: 10px;
+    }
+
+    .details {
+      width: 100%;
+    }
+
+    .detail-item {
+      display: flex;
+      margin-bottom: 12px;
+      background: rgba(255, 255, 255, 0.05);
+      padding: 8px;
+      border-radius: 6px;
+    }
+
+    .detail-icon {
+      width: 25px;
+      text-align: center;
+      margin-right: 10px;
+      color: #ffc107;
+    }
+
+    .detail-content {
+      flex: 1;
+    }
+
+    .detail-content h5 {
+      margin: 0;
+      font-size: 12px;
+      font-weight: 600;
+      color: #ffc107;
+    }
+
+    .detail-content p {
+      margin: 3px 0 0;
+      font-size: 11px;
+      opacity: 0.9;
+    }
+
+    .id-card-footer {
+      background: rgba(0, 0, 0, 0.3);
+      padding: 12px;
+      text-align: center;
+      border-top: 1px solid #444;
+    }
+
+    .social-links {
+      display: flex;
+      justify-content: center;
+      gap: 15px;
+    }
+
+    .social-links a {
+      color: #eee;
+      font-size: 16px;
+      transition: color 0.3s;
+    }
+
+    .social-links a:hover {
+      color: #ffc107;
+    }
+
+    .signature {
+      margin-top: 8px;
+      display: flex;
+      justify-content: flex-end;
+      align-items: center;
+      padding-right: 15px;
+    }
+
+    .signature-line {
+      width: 70px;
+      height: 1px;
+      background: #eee;
+      margin-right: 8px;
+      opacity: 0.7;
+    }
+
+    .signature-text {
+      font-size: 9px;
+      opacity: 0.7;
+    }
+
+    .watermark {
+      position: absolute;
+      bottom: 70px;
+      right: 15px;
+      opacity: 0.03;
+      font-size: 60px;
+      transform: rotate(-30deg);
+      pointer-events: none;
+    }
+  </style>
+</head>
+
+<body>
+
+  <!-- Navbar -->
+  <nav class="navbar navbar-expand-lg navbar-dark fixed-top">
+    <div class="container">
+      <a class="navbar-brand fw-bold" href="#">Ahmad Alkadri</a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarNav">
+        <ul class="navbar-nav ms-auto">
+          <li class="nav-item"><a class="nav-link" href="#about">About</a></li>
+          <li class="nav-item"><a class="nav-link" href="#skills">Skills</a></li>
+          <li class="nav-item"><a class="nav-link" href="#experience">Experience</a></li>
+          <li class="nav-item"><a class="nav-link" href="#projects">Projects</a></li>
+          <li class="nav-item"><a class="nav-link" href="#contact">Contact</a></li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Hero -->
+  <section class="hero">
+    <div>
+      <h1 class="text-white">Hi, I'm <span class="text-warning">Ahmad Alkadri</span> 👋</h1>
+      <h3 class="mt-3 text-light">
+        <span id="typing"></span>
+      </h3>
+      <a href="#projects" class="btn btn-warning mt-4">View My Work</a>
+    </div>
+  </section>
+
+  <!-- About -->
+  <section id="about" class="container py-5" data-aos="fade-up">
+    <h2 class="text-center mb-4 text-warning section-title">About Me</h2>
+    <p class="lead text-center">
+      I am a <b>Full Stack Developer</b> skilled in Laravel, Flutter, and AWS.
+      Passionate about building high-quality applications and delivering seamless user experiences.
+    </p>
+    <div class="row mt-5">
+      <div class="col-md-6">
+        <h4 class="text-warning">Personal Info</h4>
+        <ul class="list-unstyled">
+          <li class="mb-2"><i class="fas fa-envelope me-2 text-warning"></i> ahmadalkadri2002@gmail.com</li>
+          <li class="mb-2"><i class="fas fa-phone me-2 text-warning"></i> +961 76743718</li>
+          <li class="mb-2"><i class="fas fa-map-marker-alt me-2 text-warning"></i> Chouf | Beirut, Lebanon</li>
+          <li class="mb-2"><i class="fab fa-github me-2 text-warning"></i> github.com/Ahmad2262002</li>
+          <li class="mb-2"><i class="fab fa-linkedin me-2 text-warning"></i> linkedin.com/in/ahmad-alkadri-42770927a</li>
+        </ul>
+      </div>
+      <div class="col-md-6">
+        <h4 class="text-warning">Education</h4>
+        <p class="mb-1"><strong>Bachelor of Computer Science</strong></p>
+        <p class="mb-1">Islamic University of Lebanon (IUL)</p>
+        <p class="text-muted">Oct 2021 – Jul 2024</p>
+        <p class="mb-0">Graduation Project: University Management System (UMS)</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Skills -->
+  <section id="skills" class="container py-5 bg-dark" data-aos="fade-up">
+    <h2 class="text-center mb-5 text-warning section-title">Technical Skills</h2>
+    <div class="row g-4">
+      <div class="col-md-3 col-6">
+        <div class="skill-item">
+          <i class="fab fa-vuejs skill-icon"></i>
+          <h5 class="text-white">Vue.js</h5>
+          <div class="progress">
+            <div class="progress-bar" role="progressbar" style="width: 85%"></div>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-3 col-6">
+        <div class="skill-item">
+          <i class="fab fa-flutter skill-icon"></i>
+          <h5 class="text-white">Flutter</h5>
+          <div class="progress">
+            <div class="progress-bar" role="progressbar" style="width: 90%"></div>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-3 col-6">
+        <div class="skill-item">
+          <i class="fab fa-laravel skill-icon"></i>
+          <h5 class="text-white">Laravel</h5>
+          <div class="progress">
+            <div class="progress-bar" role="progressbar" style="width: 88%"></div>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-3 col-6">
+        <div class="skill-item">
+          <i class="fab fa-php skill-icon"></i>
+          <h5 class="text-white">PHP</h5>
+          <div class="progress">
+            <div class="progress-bar" role="progressbar" style="width: 90%"></div>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-3 col-6">
+        <div class="skill-item">
+          <i class="fab fa-js skill-icon"></i>
+          <h5 class="text-white">JavaScript</h5>
+          <div class="progress">
+            <div class="progress-bar" role="progressbar" style="width: 85%"></div>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-3 col-6">
+        <div class="skill-item">
+          <i class="fas fa-database skill-icon"></i>
+          <h5 class="text-white">MySQL</h5>
+          <div class="progress">
+            <div class="progress-bar" role="progressbar" style="width: 87%"></div>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-3 col-6">
+        <div class="skill-item">
+          <i class="fab fa-aws skill-icon"></i>
+          <h5 class="text-white">AWS</h5>
+          <div class="progress">
+            <div class="progress-bar" role="progressbar" style="width: 75%"></div>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-3 col-6">
+        <div class="skill-item">
+          <i class="fab fa-git-alt skill-icon"></i>
+          <h5 class="text-white">Git</h5>
+          <div class="progress">
+            <div class="progress-bar" role="progressbar" style="width: 88%"></div>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-3 col-6">
+        <div class="skill-item">
+          <i class="fas fa-code skill-icon"></i>
+          <h5 class="text-white">RESTful APIs</h5>
+          <div class="progress">
+            <div class="progress-bar" role="progressbar" style="width: 90%"></div>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-3 col-6">
+        <div class="skill-item">
+          <div class="skill-icon fa-postman"></div>
+          <h5 class="text-white">Postman</h5>
+          <div class="progress">
+            <div class="progress-bar" role="progressbar" style="width: 85%"></div>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-3 col-6">
+        <div class="skill-item">
+          <i class="fas fa-laptop-code skill-icon"></i>
+          <h5 class="text-white">VS Code</h5>
+          <div class="progress">
+            <div class="progress-bar" role="progressbar" style="width: 92%"></div>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-3 col-6">
+        <div class="skill-item">
+          <i class="fab fa-android skill-icon"></i>
+          <h5 class="text-white">Android Studio</h5>
+          <div class="progress">
+            <div class="progress-bar" role="progressbar" style="width: 88%"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Experience -->
+  <section id="experience" class="container py-5" data-aos="fade-up">
+    <h2 class="text-center mb-5 text-warning section-title">Experience</h2>
+
+    <div class="timeline">
+      <div class="timeline-item">
+        <h4 class="text-warning">Web & Mobile Developer Intern</h4>
+        <h5 class="text-white">Xpertbot (Remote)</h5>
+        <p class="text-muted">Nov 2024 – Aug 2025</p>
+        <ul class="text-light">
+          <li>Built and enhanced cross-platform apps using Flutter and Laravel within agile teams</li>
+          <li>Integrated RESTful APIs, handled JSON data, and used Git for version control</li>
+          <li>Applied BLoC and Provider architecture for scalable app structure</li>
+          <li>Performed performance profiling and debugging to optimize Flutter apps</li>
+          <li>Deployed apps for Android; currently exploring iOS deployment workflows</li>
+          <li>Collaborated on real-world projects using GitHub and agile practices</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <!-- Projects -->
+  <section id="projects" class="container py-5" data-aos="fade-up">
+    <h2 class="text-center mb-5 text-warning section-title">Projects</h2>
+    <div class="row g-4">
+      <div class="col-md-6">
+        <div class="card p-3">
+          <h5 class="text-white">NewsFlow Web</h5>
+          <p>A comprehensive news management system with admin dashboard and API integration.</p>
+          <div class="mt-3">
+            <span class="badge bg-warning text-dark me-1">Laravel</span>
+            <span class="badge bg-warning text-dark me-1">PHP</span>
+            <span class="badge bg-warning text-dark me-1">MySQL</span>
+          </div>
+          <a href="https://github.com/Ahmad2262002/newsFlowweb" target="_blank" class="btn btn-outline-warning btn-sm mt-3">View on GitHub</a>
+        </div>
+      </div>
+      <div class="col-md-6">
+        <div class="card p-3">
+          <h5 class="text-white">NewsFlow Mobile</h5>
+          <p>Mobile news app with real-time notifications, multilingual support, and user authentication.</p>
+          <div class="mt-3">
+            <span class="badge bg-warning text-dark me-1">Flutter</span>
+            <span class="badge bg-warning text-dark me-1">Dart</span>
+            <span class="badge bg-warning text-dark me-1">REST API</span>
+          </div>
+          <a href="https://github.com/Ahmad2262002/NewsFlowMobile" target="_blank" class="btn btn-outline-warning btn-sm mt-3">View on GitHub</a>
+        </div>
+      </div>
+      <div class="col-md-6">
+        <div class="card p-3">
+          <h5 class="text-white">Booking Event App</h5>
+          <p>Event booking mobile app with admin dashboard, payment verification, and user feedback system.</p>
+          <div class="mt-3">
+            <span class="badge bg-warning text-dark me-1">Flutter</span>
+            <span class="badge bg-warning text-dark me-1">Laravel</span>
+            <span class="badge bg-warning text-dark me-1">Payment API</span>
+          </div>
+          <a href="https://github.com/Ahmad2262002/Book_event_mobile" target="_blank" class="btn btn-outline-warning btn-sm mt-3">View on GitHub</a>
+        </div>
+      </div>
+      <div class="col-md-6">
+        <div class="card p-3">
+          <h5 class="text-white">University Management System</h5>
+          <p>A system to manage university operations, student data, and academic activities efficiently.</p>
+          <div class="mt-3">
+            <span class="badge bg-warning text-dark me-1">PHP</span>
+            <span class="badge bg-warning text-dark me-1">HTML/CSS</span>
+            <span class="badge bg-warning text-dark me-1">JavaScript</span>
+            <span class="badge bg-warning text-dark me-1">Bootstrap</span>
+          </div>
+          <a href="https://github.com/Ahmad2262002/University-Management-System" target="_blank" class="btn btn-outline-warning btn-sm mt-3">View on GitHub</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Contact -->
+  <section id="contact" class="container py-5" data-aos="fade-up">
+    <h2 class="text-center mb-5 text-warning section-title">Contact Me</h2>
+
+    <!-- ID Card -->
+    <div class="id-card-container">
+      <div class="id-card">
+        <div class="id-card-header">
+          <h3>AHMAD ALKADRI</h3>
+          <p>FULL STACK DEVELOPER</p>
+        </div>
+
+        <div class="id-card-body">
+          <div class="photo-container">
+            <img src="{{ asset('photos/Ahmad Alkadri.jpg') }}" alt="Ahmad Alkadri" style="width: 100%; height: 100%; object-fit: cover;">
+          </div>
+
+
+          <div class="details">
+            <div class="detail-item">
+              <div class="detail-icon">
+                <i class="fas fa-envelope"></i>
+              </div>
+              <div class="detail-content">
+                <h5>EMAIL</h5>
+                <p>ahmadalkadri2002@gmail.com</p>
+              </div>
+            </div>
+
+            <div class="detail-item">
+              <div class="detail-icon">
+                <i class="fas fa-phone"></i>
+              </div>
+              <div class="detail-content">
+                <h5>PHONE</h5>
+                <p>+961 76743718</p>
+              </div>
+            </div>
+
+            <div class="detail-item">
+              <div class="detail-icon">
+                <i class="fas fa-map-marker-alt"></i>
+              </div>
+              <div class="detail-content">
+                <h5>LOCATION</h5>
+                <p>Chouf | Beirut, Lebanon</p>
+              </div>
+            </div>
+
+            <div class="detail-item">
+              <div class="detail-icon">
+                <i class="fas fa-graduation-cap"></i>
+              </div>
+              <div class="detail-content">
+                <h5>EDUCATION</h5>
+                <p>B.Sc. Computer Science - IUL</p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="watermark">
+          <i class="fas fa-code"></i>
+        </div>
+
+        <div class="id-card-footer">
+          <div class="social-links">
+            <a href="mailto:ahmadalkadri2002@gmail.com"><i class="fas fa-envelope"></i></a>
+            <a href="https://www.linkedin.com/in/ahmad-alkadri-42770927a" target="_blank"><i class="fab fa-linkedin"></i></a>
+            <a href="https://github.com/Ahmad2262002" target="_blank"><i class="fab fa-github"></i></a>
+          </div>
+
+          <div class="signature">
+            <div class="signature-line"></div>
+            <div class="signature-text">Ahmad Alkadri</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+
+  </section>
+
+  <!-- Footer -->
+  <footer>
+    <p>© 2025 Ahmad Alkadri. All Rights Reserved.</p>
+  </footer>
+
+  <!-- Scripts -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+  <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/typed.js@2.0.12"></script>
+  <script>
+    AOS.init();
+    new Typed("#typing", {
+      strings: ["Full Stack Developer", "Laravel Expert", "Flutter Enthusiast", "Problem Solver"],
+      typeSpeed: 60,
+      backSpeed: 40,
+      loop: true
+    });
+
+    // You can replace the photo placeholder with your actual photo by:
+    // 1. Adding an img tag inside the photo-container div
+    // 2. Removing the photo-placeholder div
+    // 3. Adjusting the styles as needed
+
+    // Example:
+    /*
+    document.querySelector('.photo-container').innerHTML = `
+      <img src="your-photo.jpg" alt="Your Photo" style="width: 100%; height: 100%; object-fit: cover;">
+    `;
+    */
+  </script>
+</body>
+
+</html>
